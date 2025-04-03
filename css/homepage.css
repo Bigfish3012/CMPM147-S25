@@ -18,3 +18,10 @@
 .two-column>*:nth-child(2) {
   flex: 1;
 }
+
+@font-face {
+  font-family: 'HangedLetters';
+  src: url('../fonts/hanging_letters/HangedLetters.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

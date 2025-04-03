@@ -1,13 +1,14 @@
 h1, h2 {
   margin: 0;
   padding: 0;
-  /* font-size: 1.2em; */
+  font-size: 3em;
   font-weight: lighter;
+  font-family: 'HangedLetters', sans-serif;
 }
 
 #content {
   width: calc(100% - 30px);
-  margin: 10px;080;
+  margin: 10px;
   padding: 10px;
   border: solid 1px #808;
   font-family: sans-serif;

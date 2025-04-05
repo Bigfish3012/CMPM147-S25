@@ -7,7 +7,7 @@ This project is mainly used for testing, and exploring how to use Glitch.  **Jus
 ## What does it do
 It basically just generates some memes from the internet. they are mainly from Chinese novels, Chinese animation, Chinese TikTok, Japanese animation, American films, and television.
 
-## where are the memes from
+## Where are the memes from
 Weapons: <https://ranking.net/rankings/coolest-imaginary-weapons>  
 Japanese anime character names: <https://ranking.goo.ne.jp/column/5584/ranking/51532/>  
 Chinese character names are from Chinese TikTok

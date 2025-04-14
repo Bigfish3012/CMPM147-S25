@@ -1,6 +1,19 @@
-This project offers a generative, living impression of this inspiring image:
+# Experiment 02: Living Impressions
+
+This image I took is at a place called "Sutro Baths" in San Francisco:
 <img src="/img/for-exp2.jpg">
 
 Relation to inspring image:
 
-- I don't know...
+- The implemented image is based on this photo
+- Shape
+- Color
+- feelings
+
+# Tools that I used
+
+  - <https://mycolor.space/>
+  - <https://colorhunt.co/>
+  - Google
+  - Youtube
+  - Stack overflow

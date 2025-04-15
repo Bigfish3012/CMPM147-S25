@@ -58,7 +58,7 @@ function draw() {
   // call a method on the instance
   myInstance.myMethod();
 
-  //sky gradient
+  //sky gradient -- code copied from flanniganable's video https://www.youtube.com/watch?v=EAY7S1tWbzc
   for (let x = 0; x < width; x++) {
     let inter = map(x, 0, width, 0, 1);
     let c = lerpColor(color("#FFDDAB"), color("#578FCA"), inter); 
@@ -81,7 +81,7 @@ function draw() {
   // Draw clouds
   const clouds = 5; // number of clouds
   const scrub = mouseX / width;
-  for (let i = 0; i < clouds; i++) {
+  for (let i = 0; i < clouds; i++) { // code copied from Prof. Modes https://glitch.com/edit/#!/cmpm147-ex2-living-impression?path=script.js%3A39%3A18
     let x = width * ((random() + (scrub / 50 + millis() / 50000.0)) % 1);
     let y = height / 3 + random(-100, 100);
   
@@ -100,6 +100,7 @@ function mousePressed() {
     // code to run when mouse is pressed
 }
 
+// code copied from https://editor.p5js.org/jackiezen/sketches/rJEziNOR
 function drawCloud(x, y, size) {
   noStroke();
   fill(245, 238, 220, random(10, 200));
@@ -116,7 +117,7 @@ function drawwaves(height = canvasContainer.height()) {
   beginShape();
   vertex(0, height);
   const steps = 40;
-  for (let i = 0; i < steps + 1; i++) {
+  for (let i = 0; i < steps + 1; i++) { // code copied from Prof. Modes https://glitch.com/edit/#!/cmpm147-ex2-living-impression?path=script.js%3A39%3A18
     let x = (width * i) / steps;
     let y = height / 2 - (random() * random() * random() * height) / 50;
     vertex(x, y);
@@ -138,7 +139,7 @@ function drawStone() {
 
 function drawMountain() {
   // Background mountain
-  let bgTopY = 300; 
+  let bgTopY = 300; // code from https://www.youtube.com/watch?v=-MUOweQ6wac
   let bgBottomY = height / 2 + 75;
   let gradient = drawingContext.createLinearGradient(0, bgTopY, 0, bgBottomY);
   gradient.addColorStop(0, 'rgba(160, 147, 134, 0.5)'); 
@@ -223,7 +224,7 @@ function drawMountain() {
   vertex(width, height / 2 + 90);
   endShape(CLOSE);
 }
-
+// code copied from https://p5js.org/reference/p5/bezier/ and https://www.youtube.com/watch?v=vN5tnSg1x2g
 function drawBird(x = 215, y = 105) {
   stroke(0);
   strokeWeight(2);

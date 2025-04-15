@@ -10,10 +10,11 @@ Relation to inspring image:
 - Color
 - feelings
 
-# Tools that I used
+# Tools/Website that I used
 
-  - <https://mycolor.space/>
-  - <https://colorhunt.co/>
-  - Google
-  - Youtube
-  - Stack overflow
+- <https://mycolor.space/>
+- <https://colorhunt.co/>
+- Google
+- Youtube
+- Stack overflow
+- ChatGPT

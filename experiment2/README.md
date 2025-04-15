@@ -18,3 +18,4 @@ Relation to inspring image:
 - Youtube
 - Stack overflow
 - ChatGPT
+- etc.

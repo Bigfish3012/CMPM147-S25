@@ -24,3 +24,24 @@ body {
     font-weight: normal;
     font-style: normal;
     }
+
+/* Description section layout */
+.description-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.image-container {
+    flex: 0 0 30%;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.text-container {
+    flex: 0 0 65%;
+}

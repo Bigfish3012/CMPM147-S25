@@ -26,23 +26,26 @@
 	<script type="text/javascript" src="./js/project.js" DEFER></script>
 	<!-- Use me for a p5.js project -->
 	<script type="text/javascript" src="./js/sketch.js" DEFER></script>
-	<script type="text/javascript" src="./js/p2_base.js" DEFER></script>
 	<script type="text/javascript" src="./js/p2_solution.js" DEFER></script>
+	<!-- <script type="text/javascript" src="./js/dungeon.js" DEFER></script> -->
 </head>
 <body>
 	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
 	<main id="content">
 		<section>
 
-			<h1>Experiment 03: Alternate Worlds</h1>
+			<h1 style="font-family: 'White_On_Black', fantasy;">Experiment 03: Alternate Worlds</h1>
 
 			<div class="minor-section">
-				<div id="canvas-container">
-					<!-- canvas will be added here -->
-				</div>
-                <div class="fullscreen-box">
-                    <button id="fullscreen">Fullscreen</button>
-                </div>
+				<button id="reseedButton">
+					Regenerate
+				</button>
+				<span id="seedReport"></span>
+				<hr />
+				<span id="canvasContainer" style="display:inline-block; margin: 10px;"></span>
+				<textarea cols="40" rows="40" id="asciiBox" style="opacity: 1; letter-spacing: 1ex; width: 700px; margin: 1px; font-family: monospace;"></textarea>
+				<hr />
+				
 			</div>
 
 			<div class="minor-section">

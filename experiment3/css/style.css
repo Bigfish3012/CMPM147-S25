@@ -14,6 +14,55 @@ body {
 }
 
 #canvas-container {
-    width: 100%;
-    height: 600px;
+    display: none;
+}
+
+@font-face {
+    font-family: 'White_On_Black';
+    src: url('../../fonts/White_On_Black.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    }
+    
+/* Grid container styles */
+.grid-container {
+    display: flex;
+    margin: 20px 0;
+    align-items: flex-start;
+}
+
+#asciiBox {
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1;
+    white-space: pre;
+    resize: none;
+    margin-right: 20px;
+}
+
+#canvasContainer {
+    border: 3px solid #d14d4d;
+    /* The canvas will have its natural size based on the grid dimensions */
+}
+
+#controls {
+    margin-bottom: 10px;
+}
+
+#reseedButton {
+    padding: 5px 10px;
+    margin-right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#reseedButton:hover {
+    background-color: #45a049;
+}
+
+#seedReport {
+    font-family: monospace;
 }

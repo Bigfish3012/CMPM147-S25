@@ -50,17 +50,30 @@
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>What are you trying to acomplish with this experiment?</p>
+				<p>In this experiment, I set out to create a procedurally generated tile-based "world" side-by-side on a web page.
+					The world can be regenerated at will, and its ASCII representation edited in real time.
+					The goal is to explore how to combine Perlin noise, simple neighbor checking bitmasks, and p5.js to generate diverse map layouts and interactive editing tools.
+				</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>Describe in detail what you did technically and how it works?</p>
+				<p>
+					To implement this project, I used the p5.js for rendering and  <code>noise()</code> for terrain variation. In sketch.js, a seed-based random and noise generator produces repeatable maps. The ASCII representation of the grid is stored in a textarea and allowing live editing.
+					I created <code>generateOverworld()</code> to initialize the grid, filling it with base terrain and then applying Perlin noise thresholds to designate water, forest, and road tiles.
+					(<code>gridCode_O</code> and <code>drawContext_O</code>) determines how each tile aligns with its neighbors, ensuring seamless transitions at shorelines, forests, and roads.
+					I also added cloud shadows using a second noise layer and animated water and rain effects by varying frame offsets and drawing simple line primitives for raindrops.
+				</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
+				<p>
+					Although the process was full of twists and turns. I am quite satisfied with the final result, because my friends said it looks like a pixel game. In the coding process, I find the most annoying thing is identifying edge cases, because I need to constantly determine the row and column where the element is located. What I am most satisfied with is that I fixed the rendering problems in the corners of the shore and added cloud and rain animation effects. What I am most satisfied with is that I fixed the rendering problems in the corners of the shore and added cloud and rain animation effects. <br/> <br/>
+					ChatGPT is also a very useful tool that helps me find my mistakes quickly, which helps me save a lot of time. But sometimes it's also very confusing. For example, answering something that is completely irrelevant to me. I have to say that the animation effect of the rain and clouds is quite good. <br/> <br/>
+					After this assignment, I realized that there are big differences between p5.js and Phaser in using tilemaps, but it may also be because I haven't been exposed to it deeply enough. It is very fun to have a world generator. <br/>
+
+				</p>
 			</div>
 
 		</section>

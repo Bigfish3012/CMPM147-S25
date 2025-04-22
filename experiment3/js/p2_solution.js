@@ -44,10 +44,11 @@ function generateOverworld(numCols, numRows) {
 function drawOverworld(grid) {
     background(128);
 
-    let t = millis() * 0.0002;
+
     for(let i = 0; i < grid.length; i++) {
         for(let j = 0; j < grid[i].length; j++) {
             if (gridCheck_O(grid, i, j, "w")) {
+                // water animation from ChatGPT
                 const offset = floor(noise(i * 0.001, j * 0.1) * 100);
                 const frame  = (floor(millis() / 500) + offset) % 2;
                 placeTile(i, j, frame, 13);
@@ -63,16 +64,6 @@ function drawOverworld(grid) {
                     gridCheck_O(grid, i-1, j, "w") && 
                     gridCheck_O(grid, i, j-1, "w")){
                     placeTile(i, j, 13, 1);
-                }
-                if(gridCheck_O(grid, i-1, j, "_") && gridCheck_O(grid, i+1, j, "_") && 
-                gridCode_O(grid, i, j, "i") != 8 && gridCode_O(grid, i, j, "i") != 4){
-                    placeTile(i, j, 5, 0);
-                    placeTile(i, j, 5, 2);
-                }
-                if(gridCheck_O(grid, i, j-1, "_") && gridCheck_O(grid, i, j+1, "_") && 
-                gridCode_O(grid, i, j, "i") != 1 && gridCode_O(grid, i, j, "i") != 2){
-                    placeTile(i, j, 4, 1);
-                    placeTile(i, j, 6, 1);
                 }
             } else if (gridCheck_O(grid, i, j, "f")) { // forest
                 placeTile(i, j, 0, 0);
@@ -97,14 +88,15 @@ function drawOverworld(grid) {
             }else {
                 placeTile(i, j, random(4) | 0, 0); // random ground tile
             }
-            // cloud‑shadow overlay
+            // cloud‑shadow overlay  from ChatGPT
+            let t = millis() * 0.0002;
             let b = noise(j*0.1 + t, i*0.1 + t);
             let a = map(b, 0, 1, 0, 200);
             noStroke();
             fill(80, 0, 115, a);
             rect(j*16, i*16, 16, 16);
             
-            //rain
+            //rain from ChatGPT
             const rainCount = 1;
             const rainLength = 5;
             const rainSpeed = 0.5;  

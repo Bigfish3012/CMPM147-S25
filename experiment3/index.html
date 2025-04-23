@@ -52,7 +52,7 @@
 				<h2>Description</h2>
 				<p>In this experiment, I set out to create a procedurally generated tile-based "world" side-by-side on a web page.
 					The world can be regenerated at will, and its ASCII representation edited in real time.
-					The goal is to explore how to combine Perlin noise, simple neighbor checking bitmasks, and p5.js to generate diverse map layouts and interactive editing tools.
+					The goal is to explore how to combine <code>noise()</code>, simple neighbor checking bitmasks, and p5.js to generate diverse map layouts and interactive editing tools.
 				</p>
 			</div>
 
@@ -60,7 +60,7 @@
 				<h2>Technical</h2>
 				<p>
 					To implement this project, I used the p5.js for rendering and  <code>noise()</code> for terrain variation. In sketch.js, a seed-based random and noise generator produces repeatable maps. The ASCII representation of the grid is stored in a textarea and allowing live editing.
-					I created <code>generateOverworld()</code> to initialize the grid, filling it with base terrain and then applying Perlin noise thresholds to designate water, forest, and road tiles.
+					I created <code>generateOverworld()</code> to initialize the grid, filling it with base terrain and then applying <code>noise()</code> thresholds to designate water, forest, and road tiles.
 					(<code>gridCode_O</code> and <code>drawContext_O</code>) determines how each tile aligns with its neighbors, ensuring seamless transitions at shorelines, forests, and roads.
 					I also added cloud shadows using a second noise layer and animated water and rain effects by varying frame offsets and drawing simple line primitives for raindrops.
 				</p>

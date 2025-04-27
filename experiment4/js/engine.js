@@ -98,15 +98,19 @@ function rebuildWorld(key) {
 }
 
 function mouseClicked() {
-    let world_pos = screenToWorld(
-        [0 - mouseX, mouseY],
-        [camera_offset.x, camera_offset.y]
-    );
+    //Check if mouse click is in the canvas
+    if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+        let world_pos = screenToWorld(
+            [0 - mouseX, mouseY],
+            [camera_offset.x, camera_offset.y]
+        );
 
-    if (window.p3_tileClicked) {
-        window.p3_tileClicked(world_pos[0], world_pos[1]);
+        if (window.p3_tileClicked) {
+            window.p3_tileClicked(world_pos[0], world_pos[1]);
+        }
+        return false;
     }
-    return false;
+    return true;
 }
 
 function draw() {

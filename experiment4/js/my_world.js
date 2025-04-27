@@ -114,7 +114,7 @@ function p3_drawTile(i, j) {
     if (XXH.h32("tile:" + [i, j], worldSeed) % 25 == 0) {
         const t = (sin(frameCount * 0.05 + (i * 13 + j * 7)) + 1) * 0.5;
         const starAlpha = lerp(60, 255, t);
-        const starScale = lerp(0.01, 0.1, t);
+        const starScale = lerp(0.01, 0.05, t);
         push();
         scale(starScale);
         noStroke();

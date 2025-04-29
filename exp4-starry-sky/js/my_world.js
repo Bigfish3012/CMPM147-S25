@@ -50,9 +50,7 @@ function p3_tileClicked(i, j) {
 function p3_drawBefore() { background(0);  }
 
 function p3_drawTile(i, j) {
-    const key = [i, j];
-    const keyStr = key.toString();
-    
+    const key = [i, j];    
     const tileHash = XXH.h32("tile:" + key, worldSeed);
     const isStarSeed = tileHash % 5 === 0; // Adjust the number of stars
     
@@ -61,17 +59,9 @@ function p3_drawTile(i, j) {
     push();
     noStroke();
     
-    // Display star when not clicked or click count is even
-    if (clickCount % 2 === 0 && isStarSeed) {
-        // Set twinkling frequency for each star (based on position hash)
-        if (!starState[keyStr]) {
-            starState[keyStr] = {
-                blinkSpeed: 0.5 + (tileHash % 10) * 0.5,  // Different stars have different twinkling speeds
-                phaseOffset: (tileHash >>> 4) % 628 * 0.01 
-            };
-        }
+    if (isStarSeed) {
         
-        // Use random color
+        // Use random color -- from color code below is from ChatGPT
         const r = 150 + (tileHash % 100);
         const g = 150 + ((tileHash >> 8) % 100);
         const b = 150 + ((tileHash >> 16) % 100);
@@ -81,8 +71,9 @@ function p3_drawTile(i, j) {
         const starSize = 3 + (tileHash % 5);
         ellipse(0, 0, starSize, starSize);
         
-        // Add white twinkling effect
-        const { blinkSpeed, phaseOffset } = starState[keyStr];
+        // Add white twinkling effect -- the 4 line codes below are from ChatGPT
+        const blinkSpeed  = 0.5 + (tileHash % 10) * 0.5;
+        const phaseOffset = ((tileHash >>> 4) % 628) * 0.01;
         const noiseX = (millis() * 0.001 * blinkSpeed + phaseOffset);
         const blinkIntensity = map(noise(noiseX), 0, 1, 10, 200);
         
@@ -92,20 +83,20 @@ function p3_drawTile(i, j) {
         ellipse(0, 0, starSize + 2, starSize + 2);
     } 
     // Display black hole when click count is odd
-    else if (clickCount % 2 === 1) {
+    if (clickCount % 2 === 1) {
         const noiseTime = millis() * 0.05; // Convert to seconds
-        const pulseSize = map(noise(noiseTime), 0, 1, 8, 10); // Map 0 to 1 to range 8-10
+        const ChangeSize = map(noise(noiseTime), 0, 1, 8, 15); // Map 0 to 1 to range 8-15
         
         // Outer ring - varies with core size
-        stroke(255, 180);
-        strokeWeight(2);
+        stroke("#FFF085");
+        strokeWeight(5);
         noFill();
-        ellipse(0, 0, pulseSize + 6, pulseSize + 6);
+        ellipse(0, 0, ChangeSize + 10, ChangeSize + 10);
         
         // Black hole core - pulsing effect
         noStroke();
         fill(0);
-        ellipse(0, 0, pulseSize, pulseSize);
+        ellipse(0, 0, 10, 10);
     }
     
     pop();

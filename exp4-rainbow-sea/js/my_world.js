@@ -55,7 +55,7 @@ let colors_list = [
 function p3_drawTile(i, j) {
     noStroke();
     const hash = XXH.h32("color:" + [i, j], worldSeed);
-    const index  = hash % colors_list.length;   // 0‥9
+    const index  = hash % colors_list.length;
     fill(colors_list[index]);
 
     push();

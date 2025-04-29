@@ -48,17 +48,29 @@
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>What are you trying to acomplish with this experiment?</p>
+				<p>
+					Inspired by the Terraria mod Wrath of the Gods <br>
+					A central golden path extending horizontally around j = 0. <br>
+					Pillars: A randomly colored pillar appears every 15 tiles and extends infinitely downwards <br>
+					Sky: The stars twinkle slightly, and interactive stars appear when you click on individual tiles (other than stairs and pillars). <br>
+				</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>Describe in detail what you did technically and how it works?</p>
+				<p>
+					<strong>Path:</strong> If j ∈ {0,±1,±2}, draw a yellow diamond. <br>
+					<strong>Stars:</strong> Draw a circle when <code>XXH.h32("tile:"+[i,j], worldSeed) % 25 === 0</code>. Use <code>sin()</code> and <code>lerp()</code> to adjust transparency and flickering frequency.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
+				<p>For this experiment, I feel okay about it. It is fun and I learned a lot from it. 
+					Specifically, the hash seed, I took a while to understand how it works. 
+					But, I want to say three projects are a bit too much, because I don't have too many time to fix the flaws and add more interesting things to the project. <br>
+					Something I like about p5.js is that there are a lot of examples on the internet. So it is easy to get what I want.
+					
+				</p>
 			</div>
 
 		</section>

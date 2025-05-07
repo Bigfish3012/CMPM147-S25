@@ -24,3 +24,22 @@ body {
     font-weight: normal;
     font-style: normal;
     }
+
+.image-container p{
+    text-align: center;
+    
+}
+
+.images-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 40px;
+    justify-content: center;
+}
+
+.results-bottom img{
+    width: 200px;
+    height: auto;
+    margin: 5px;
+}

@@ -35,12 +35,43 @@
 			<h1 style="font-family: 'White_On_Black', fantasy;">Experiment 05: Evolutionary Impressions</h1>
 
 			<div class="minor-section">
-				<div id="container">
-					<!-- canvas will be added here -->
+				<select id="dropper"></select>
+				<button id="restart">
+					restart
+				</button>
+				<p>
+					Mutation rate (<span id="rate"></span>%):<br /><input
+					id="slider"
+					type="range"
+					min="1"
+					max="100"
+					value="100"
+					/>
+				</p>
+				
+				<div class="images-row">
+					<div class="image-container">
+						<p id="original"></p>
+						<p class="caption"></p>
+					</div>
+					<div class="image-container">
+						<p id="best"></p>
+						<p>Best Image</p>
+					</div>
+					<div class="image-container">
+						<p id="active"></p>
+						<p>Active Image</p>
+					</div>
 				</div>
-                <div class="fullscreen-box">
-                    <button id="fullscreen">Fullscreen</button>
-                </div>
+
+				<p>Active score: <span id="activeScore"></span></p>
+				<p>Exploration rate: <span id="fpsCounter"></span> fps</p>
+				<p>Best score: <span id="bestScore"></span></p>
+				<div class="results-bottom">
+					<p id="memory" data-max-items="16"></p>
+				</div>
+				
+                
 			</div>
 
 			<div class="minor-section">

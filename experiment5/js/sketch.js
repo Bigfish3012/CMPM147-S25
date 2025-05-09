@@ -24,6 +24,21 @@ function preload() {
     currentInspiration = allInspirations[0];
 
     restart.onclick = () => inspirationChanged(allInspirations[dropper.value]);
+    
+    // Add color channel swap button click event
+    document.getElementById("colorSwap").onclick = () => {
+        // Cycle through color channel modes
+        colorChannelMode = (colorChannelMode + 1) % 6;
+        
+        // Force re-render current design without mutation
+        randomSeed(0);
+        renderDesign(currentDesign, currentInspiration);
+        
+        // Display current color mode
+        let modeNames = ["RGB", "RBG", "GRB", "GBR", "BRG", "BGR"];
+        document.getElementById("colorSwap").textContent = "Color Mode: " + modeNames[colorChannelMode];
+        console.log("Color channel mode changed to: " + modeNames[colorChannelMode]);
+    };
 }
 
 function inspirationChanged(nextInspiration) {
@@ -32,8 +47,6 @@ function inspirationChanged(nextInspiration) {
     memory.innerHTML = "";
     setup();
 }
-
-
 
 function setup() {
   currentCanvas = createCanvas(width, height);
@@ -44,6 +57,10 @@ function setup() {
   image(currentInspiration.image, 0,0, width, height);
   loadPixels();
   currentInspirationPixels = pixels;
+  
+  // Initialize color channel button text
+  let modeNames = ["RGB", "RBG", "GRB", "GBR", "BRG", "BGR"];
+  document.getElementById("colorSwap").textContent = "Color Mode: " + modeNames[colorChannelMode];
 }
 
 function evaluate() {
@@ -57,8 +74,6 @@ function evaluate() {
   }
   return 1/(1+error/n);
 }
-
-
 
 function memorialize() {
   let url = currentCanvas.canvas.toDataURL();

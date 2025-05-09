@@ -1,5 +1,8 @@
 /* exported getInspirations, initDesign, renderDesign, mutateDesign */
 
+// Track current RGB color channel arrangement
+// 0: RGB(default), 1: RBG, 2: GRB, 3: GBR, 4: BRG, 5: BGR
+let colorChannelMode = 0;
 
 function getInspirations() {
     return [
@@ -55,7 +58,7 @@ function getInspirations() {
 function initDesign(inspiration) {
     // from professor's code : https://github.com/wmodes/cmpm147/blob/master/experiment5/js/mydesign.js
     $(".caption").text(inspiration.credit);
-    const size = 400 / inspiration.image.width;
+    const size = 500 / inspiration.image.width;
     resizeCanvas(inspiration.image.width * size, inspiration.image.height * size);
     const imageHTML = `<img src="${inspiration.assetUrl}" style="width: ${inspiration.image.width * size}px; height: ${inspiration.image.height * size}px;">`;
     $('#original').empty()
@@ -91,7 +94,8 @@ function renderDesign(design, inspiration) {
         try {
             // get the color and create a semi-transparent version
             let c = fg.fill;
-            fill(c[0], c[1], c[2], 160);
+            let mappedColor = mapColorChannels(c[0], c[1], c[2]);
+            fill(mappedColor[0], mappedColor[1], mappedColor[2], 160);
         } catch (e) {
             // if the color is invalid, use a random color
             fill(random(255), random(255), random(255), 120);
@@ -121,7 +125,7 @@ function mutateDesign(design, inspiration, rate) {
         const fg = design.fg[i];
         if(random(1) < rate){
             // randomly select a point on the image as the new position
-            const size = 400 / inspiration.image.width;
+            const size = 500 / inspiration.image.width;
             let newPosX = constrain(floor(randomGaussian(fg.x / size, inspiration.image.width * 0.1)), 0, inspiration.image.width - 1);
             let newPosY = constrain(floor(randomGaussian(fg.y / size, inspiration.image.height * 0.1)), 0, inspiration.image.height - 1);
             
@@ -167,6 +171,32 @@ function getImageColor(image, x, y) {
     if (!Array.isArray(c)) {
         return [random(255), random(255), random(255), 120];
     }
-    
+    // Apply color channel mapping if needed
+    if (colorChannelMode > 0) {
+        let mapped = mapColorChannels(c[0], c[1], c[2]);
+        c[0] = mapped[0];
+        c[1] = mapped[1];
+        c[2] = mapped[2];
+    }
     return c;
+}
+
+// Map RGB colors based on current color channel mode
+function mapColorChannels(r, g, b) {
+    switch (colorChannelMode) {
+        case 0: // RGB - default
+            return [r, g, b];
+        case 1: // RBG
+            return [r, b, g];
+        case 2: // GRB
+            return [g, r, b];
+        case 3: // GBR
+            return [g, b, r];
+        case 4: // BRG
+            return [b, r, g];
+        case 5: // BGR
+            return [b, g, r];
+        default:
+            return [r, g, b];
+    }
 }

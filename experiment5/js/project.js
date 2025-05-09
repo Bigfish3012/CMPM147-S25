@@ -7,21 +7,6 @@ let colorChannelMode = 0;
 function getInspirations() {
     return [
         {
-        name: "Lunch atop a Skyscraper", 
-        assetUrl: "https://cdn.glitch.global/3abd0223-86fb-43ce-a00a-fde12615bcd5/lunch-on-a-skyscraper.jpg?v=1714798266994",
-        credit: "Lunch atop a Skyscraper, Charles Clyde Ebbets, 1932"
-        },
-        {
-        name: "Train Wreck", 
-        assetUrl: "https://cdn.glitch.global/3abd0223-86fb-43ce-a00a-fde12615bcd5/train-wreck.jpg?v=1714798264965",
-        credit: "Train Wreck At Monteparnasse, Levy & fils, 1895"
-        },
-        {
-        name: "Migrant mother", 
-        assetUrl: "https://cdn.glitch.global/3abd0223-86fb-43ce-a00a-fde12615bcd5/migrant-mother.jpg?v=1714778906791",
-        credit: "Migrant Mother near Nipomo, California, Dorothea Lange, 1936"
-        },
-        {
         name: "Disaster Girl", 
         assetUrl: "https://cdn.glitch.global/3abd0223-86fb-43ce-a00a-fde12615bcd5/girl-with-fire.jpg?v=1714778905663",
         credit: "Four-year-old Zoë Roth, 2005"
@@ -52,11 +37,19 @@ function getInspirations() {
         assetUrl: "img/frog.png",
         credit: "Frog, from the internet"
         },
+        {
+        name: "Wukong",
+        assetUrl: "img/wukong.avif",
+        credit: "Wukong, from the my screenshot"
+        },
+        
+        
     ];
 }
 
 function initDesign(inspiration) {
     // from professor's code : https://github.com/wmodes/cmpm147/blob/master/experiment5/js/mydesign.js
+    // The solution from Raven Cruz and Jackie Sanchez
     $(".caption").text(inspiration.credit);
     const size = 500 / inspiration.image.width;
     resizeCanvas(inspiration.image.width * size, inspiration.image.height * size);
@@ -159,7 +152,7 @@ function mut(num, min, max, rate) {
     return constrain(randomGaussian(num, (rate * (max - min)) / 20), min, max);
 }
 
-function getImageColor(image, x, y) {
+function getImageColor(image, x, y) { // Inspired by the solution from Raven Cruz and Jackie Sanchez
     // ensure the coordinates are within the image range
     x = constrain(floor(x), 0, image.width - 1);
     y = constrain(floor(y), 0, image.height - 1);

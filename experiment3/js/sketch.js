@@ -1,4 +1,4 @@
-// sketch.js - purpose and description here
+// sketch.js - Overworld and Dungeon Generator
 // Author: Chengkun Li
 // Date:
 
@@ -13,6 +13,11 @@ let seed = 0;
 let tilesetImage;
 let currentGrid = [];
 let numRows, numCols;
+let worldType = "overworld"; // Current world type: overworld or dungeon
+
+// Store grids for both world types
+let overworldGrid = [];
+let dungeonGrid = [];
 
 function preload() {
   tilesetImage = loadImage("./tileset/tilesetP8.png");
@@ -23,16 +28,43 @@ function reseed() {
   randomSeed(seed);
   noiseSeed(seed);
   select("#seedReport").html("seed " + seed);
-  regenerateGrid();
+  
+  // Regenerate both grids
+  overworldGrid = generateOverworld(numCols, numRows);
+  dungeonGrid = generateDungeon(numCols, numRows);
+  
+  // Update current grid based on world type
+  if (worldType === "overworld") {
+    select("#asciiBox").value(gridToString(overworldGrid));
+    currentGrid = overworldGrid;
+  } else {
+    select("#asciiBox").value(gridToString(dungeonGrid));
+    currentGrid = dungeonGrid;
+  }
 }
 
 function regenerateGrid() {
-  select("#asciiBox").value(gridToString(generateOverworld(numCols, numRows)));
-  reparseGrid();
+  // Only regenerate the current type of grid
+  if (worldType === "overworld") {
+    overworldGrid = generateOverworld(numCols, numRows);
+    select("#asciiBox").value(gridToString(overworldGrid));
+    currentGrid = overworldGrid;
+  } else {
+    dungeonGrid = generateDungeon(numCols, numRows);
+    select("#asciiBox").value(gridToString(dungeonGrid));
+    currentGrid = dungeonGrid;
+  }
 }
 
 function reparseGrid() {
-  currentGrid = stringToGrid(select("#asciiBox").value());
+  // Update the appropriate grid based on world type
+  if (worldType === "overworld") {
+    overworldGrid = stringToGrid(select("#asciiBox").value());
+    currentGrid = overworldGrid;
+  } else {
+    dungeonGrid = stringToGrid(select("#asciiBox").value());
+    currentGrid = dungeonGrid;
+  }
 }
 
 function gridToString(grid) {
@@ -57,6 +89,23 @@ function stringToGrid(str) {
   return grid;
 }
 
+function toggleWorldType() {
+  // Switch between overworld and dungeon
+  worldType = worldType === "overworld" ? "dungeon" : "overworld";
+  
+  // Update button text
+  select("#toggleWorldButton").html(worldType === "overworld" ? "Switch to Dungeon" : "Switch to Overworld");
+  
+  // Use the stored grid for the current world type
+  if (worldType === "overworld") {
+    select("#asciiBox").value(gridToString(overworldGrid));
+    currentGrid = overworldGrid;
+  } else {
+    select("#asciiBox").value(gridToString(dungeonGrid));
+    currentGrid = dungeonGrid;
+  }
+}
+
 function setup() {
   numCols = select("#asciiBox").attribute("rows") | 0;
   numRows = select("#asciiBox").attribute("cols") | 0;
@@ -66,14 +115,32 @@ function setup() {
 
   select("#reseedButton").mousePressed(reseed);
   select("#asciiBox").input(reparseGrid);
+  
+  // Create toggle world button
+  let toggleButton = createButton("Switch to Dungeon");
+  toggleButton.id("toggleWorldButton");
+  toggleButton.mousePressed(toggleWorldType);
+  toggleButton.parent("worldControls");
 
-  reseed();
+  // Initialize both grids
+  overworldGrid = generateOverworld(numCols, numRows);
+  dungeonGrid = generateDungeon(numCols, numRows);
+  
+  // Set initial grid
+  currentGrid = overworldGrid;
+  select("#asciiBox").value(gridToString(currentGrid));
 }
 
 
 function draw() {
   randomSeed(seed);
-  drawOverworld(currentGrid);
+  
+  // Draw the current world type
+  if (worldType === "overworld") {
+    drawOverworld(currentGrid);
+  } else {
+    drawDungeon(currentGrid);
+  }
 }
 
 function placeTile(i, j, ti, tj) {

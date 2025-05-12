@@ -49,18 +49,37 @@ body {
     margin-bottom: 10px;
 }
 
-#reseedButton {
-    padding: 5px 10px;
-    margin-right: 10px;
+#toggleWorldButton {
+    padding: 8px 16px;
     background-color: #4CAF50;
     color: white;
-    border: 5px;
+    border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+#toggleWorldButton:hover {
+    background-color: #45a049;
+}
+
+#reseedButton {
+    padding: 8px 16px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
 #reseedButton:hover {
-    background-color: #45a049;
+    background-color: #007095;
+}
+
+#worldControls {
+    display: inline-block;
 }
 
 #seedReport {

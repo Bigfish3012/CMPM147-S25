@@ -8,7 +8,7 @@ function generateOverworld(numCols, numRows) {
         }
         grid.push(row);
     }
-    const noiseScale = 0.08;
+    const noiseScale = 0.083;
     
     for (let i = 0; i < numRows; i++) {
         for (let j = 0; j < numCols; j++) {
@@ -49,10 +49,10 @@ function drawOverworld(grid) {
         for(let j = 0; j < grid[i].length; j++) {
             if (gridCheck_O(grid, i, j, "w")) {
                 // water animation from ChatGPT
-                const offset = floor(noise(i * 0.001, j * 0.1) * 100);
-                const frame  = (floor(millis() / 500) + offset) % 2;
-                placeTile(i, j, frame, 13);
-                drawContext_O(grid, i, j, "w", 0, 0);
+                const time = millis() / 5000.0;
+                const changes = floor(2 + sin(time + i * 0.3 + j * 0.2) * 2);
+                placeTile(i, j, changes, 13);               
+                drawContext_O(grid, i, j, "w", 0, 0);        
                 // For the corner of the shore
                 if(!gridCheck_O(grid, i-1, j+1, "w") && 
                     gridCheck_O(grid, i-1, j, "w") && 

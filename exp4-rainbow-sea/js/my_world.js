@@ -56,7 +56,7 @@ function p3_drawTile(i, j) {
     noStroke();
     const hash = XXH.h32("color:" + [i, j], worldSeed);
     const index  = hash % colors_list.length;
-    fill(colors_list[index]);
+    const tileColor = color(colors_list[index]);
 
     push();
 
@@ -68,7 +68,24 @@ function p3_drawTile(i, j) {
     
     // Apply wave motion to the tile
     translate(0, waveY);
-
+    
+    // Create glow effect for the tile
+    for (let g = 3; g > 0; g--) {
+        let alpha = map(g, 0, 3, 0, 40); // Decrease opacity outward
+        fill(red(tileColor), green(tileColor), blue(tileColor), alpha);
+        
+        // Draw slightly larger tile shape for glow effect
+        let growFactor = g * 2;
+        beginShape();
+        vertex(-(tw + growFactor), 0);
+        vertex(0, th + growFactor);
+        vertex(tw + growFactor, 0);
+        vertex(0, -(th + growFactor));
+        endShape(CLOSE);
+    }
+    
+    // Draw the actual tile
+    fill(colors_list[index]);
     beginShape();
     vertex(-tw, 0);
     vertex(0, th);
@@ -86,6 +103,16 @@ function p3_drawTile(i, j) {
         // Tower - rectangle (red)
         fill(255, 0, 0);
         rect(-tw/4, -th/2 - 15, tw/2, 15);
+        
+        // Create glow effect for lighthouse top
+        let glowColor = color(255, 255, 0); // Yellow glow
+        
+        // Draw multiple circles with decreasing opacity to create glow effect
+        for (let i = 6; i > 0; i--) {
+            let alpha = map(i, 0, 6, 0, 50); // Increase opacity towards the center
+            fill(red(glowColor), green(glowColor), blue(glowColor), alpha);
+            ellipse(0, -th/2 - 20, 10 + i * 4, 10 + i * 4);
+        }
         
         // Lighthouse top - circle (yellow)
         fill(255, 255, 0);
